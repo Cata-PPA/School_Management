@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title><h:outputText value="Log in page" /></title>
+</h:head>
+<h:body>
+	<f:view>
+		<div class="centred-form">
+			<h:form id="loginForm"
+				style="height:200px; max-width:40%; margin:0 auto;">
+				<img src="http://www.socialworker.com/downloads/43/download/moviepopcorn.jpg?cb=7d9fc70095547d96f73c0ed5a46ad4ed" height="200" width = "100%" align = "middle"> </img>
+					
+				<p:panel id="panel" header="Log in">
+
+					<p:messages id="msgs" />
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel for="username" value="Username:" />
+						<p:inputText id="username" value="#{loginBean.loginUser.username}"
+							required="true" label="Username">
+							<f:validateLength minimum="4" />
+						</p:inputText>
+						<p:message for="username" display="icon" />
+
+						<p:outputLabel for="password" value="Password:" />
+						<p:password id="password" value="#{loginBean.loginUser.password}"
+							label="Password" required="true">
+							<f:validateLength minimum="4" />
+							<p:ajax update="msgPassword" event="keyup" />
+						</p:password>
+						<p:message for="password" id="msgPassword" display="icon" />
+
+						<p:commandButton value="Log in" update="panel"
+							action="#{loginBean.login}" icon="ui-icon-check" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</div>
+	</f:view>
+</h:body>
+</html>

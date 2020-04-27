@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Customer</title>
+
+
+	
+
+</h:head>
+<h:body>
+
+	<ui:composition template="/commonStudent/commonLayout.xhtml">
+		<ui:define name="content">
+	<p:panel style="min-height:900px; max-width:80%; margin:0 auto;">
+
+
+		<h:form>
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:photoCam widgetVar="pc"
+					listener="#{studentBeanEditProfile.oncapture}" update="photo" />
+				<p:commandButton type="button" value="Capture"
+					onclick="PF('pc').capture()" />
+				<p:outputPanel id="photo">
+					<p:graphicImage
+						value="/demo/images/photocam/#{studentBeanEditProfile.filename}.jpeg"
+						rendered="#{not empty studentBeanEditProfile.filename}"
+						height="256" width="180" />
+					<p:outputLabel value="#{studentBeanEditProfile.imgsrc}" />
+				</p:outputPanel>
+			</h:panelGrid>
+		</h:form>
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="lastname" value="Lastname: " />
+			<p:inputMask id="lastname" value="#{maskView.date}" />
+
+			<p:outputLabel for="firstname" value="Firstname:" />
+			<p:inputMask id="firstname" value="#{maskView.phone}" />
+
+			<p:outputLabel for="mail" value="Mail:" />
+			<p:inputMask id="mail" value="#{maskView.phoneExt}" />
+
+			<p:outputLabel for="username" value="Username:" />
+			<p:inputMask id="username" value="#{maskView.taxId}" />
+
+			<p:outputLabel for="password" value="Password:" />
+			<p:inputMask id="password" value="#{maskView.ssn}" />
+
+			<p:outputLabel for="newpassword" value="New password: " />
+			<p:inputMask id="newpassword" value="#{maskView.productKey}" />
+
+			<p:commandButton value="Reset" type="reset" />
+			<p:commandButton value="Submit" update="display"
+				oncomplete="PF('dlg').show()" />
+		</h:panelGrid>
+
+	</p:panel>
+
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>

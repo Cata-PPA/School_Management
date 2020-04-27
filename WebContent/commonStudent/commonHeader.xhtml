@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>Student</title>
+</h:head>
+<body>
+	<ui:composition>
+
+		<f:view>
+			<h:form>
+				<p:growl id="messages" showDetail="false" />
+				<p:menu toggleable="true">
+					<p:submenu label="Dashboard">
+						<p:menuitem value="View Dashboard" outcome="studentViewDashboard"
+							icon="ui-icon-star" />
+					</p:submenu>
+					
+					<p:submenu label="Profile">
+						<p:menuitem value="View Profile" outcome="studentViewProfile"
+							icon="ui-icon-star" />
+						<p:menuitem value="Edit Profile" outcome="studentEditProfile"
+							icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Teacher">
+						<p:menuitem value="View Teachers" outcome="studentViewTeachers"
+							icon="ui-icon-star" />
+					</p:submenu>
+					
+					<p:submenu label="Courses">
+						<p:menuitem value="View Courses" outcome="studentViewCourses"
+							icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Exams">
+						<p:menuitem value="View Exams" outcome="studentViewExams"
+							icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Grades">
+						<p:menuitem value="View Grades" outcome="studentViewGrades"
+							icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Group">
+						<p:menuitem value="View Group" outcome="studentViewGroup"
+							icon="ui-icon-star" />
+					</p:submenu>
+					<p:submenu label="Schedule">
+						<p:menuitem value="View Schedule" outcome="studentViewSchedule"
+							icon="ui-icon-star" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</f:view>
+
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Student</title>
+</h:head>
+
+
+
+<h:body>
+	<ui:composition template="/commonStudent/commonLayout.xhtml">
+		<ui:define name="content">
+
+
+			<h:form id="form">
+				<h:panelGrid columns="3" style="margin:10px 0">
+					<p:outputLabel for="template" value="Template:"
+						style="font-weight:bold" />
+					<p:inputText id="template" value="#{dtColumnsView.columnTemplate}"
+						size="50" />
+					<p:commandButton update="teachers"
+						actionListener="#{dtColumnsView.updateColumns}" value="Update"
+						process="@parent" icon="ui-icon-refresh"
+						oncomplete="PF('teachersTable').clearFilters()" />
+				</h:panelGrid>
+
+				<p:dataTable id="teachers" var="teacher"
+					value="#{dtColumnsView.teachers}" widgetVar="teachersTable"
+					filteredValue="#{dtColumnsView.filteredTeachers}">
+					<p:columns value="#{dtColumnsView.columns}" var="column"
+						columnIndexVar="colIndex" sortBy="#{teacher[column.property]}"
+						filterBy="#{teacher[column.property]}">
+						<f:facet name="header">
+							<h:outputText value="#{column.header}" />
+						</f:facet>
+
+						<h:graphicImage value=" #{teacher[column.property]}" height="160"
+							width="160" rendered="#{column.property eq 'picture' }" />
+						<h:outputText value="#{teacher[column.property]}"
+							rendered="#{column.property ne 'picture'}" />
+
+					</p:columns>
+
+
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

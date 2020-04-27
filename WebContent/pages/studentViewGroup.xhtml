@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Student</title>
+
+
+
+
+</h:head>
+<h:body>
+
+	<ui:composition template="/commonStudent/commonLayout.xhtml">
+		<ui:define name="content">
+			<p:panel style="min-height:900px; max-width:80%; margin:0 auto;">
+				<h:form id="form">
+					<p:dataGrid var="student"
+						value="#{studentGroupBean.getAllStudentsWithSameGroup(loginBean.loginUser)}"
+						columns="3" layout="grid" rows="12" paginator="true" id="users"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,16">
+
+						<f:facet name="header">
+           Users
+        </f:facet>
+
+						<p:panel header="#{student.username}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+								<img src="#{student.picture}" height="160" width="160"> </img>
+
+								<p:panelGrid columns="3" layout="grid">
+									<p:commandLink update=":form:studentDetail"
+										oncomplete="PF('studentDialog').show()" username="View Detail">
+										<h:outputText styleClass="ui-icon ui-icon-search"
+											style="margin:0 auto;" />
+										<f:setPropertyActionListener value="#{student}"
+											target="#{studentGroupBean.selectedStudent}" />
+									</p:commandLink>
+								</p:panelGrid>
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+
+					<p:dialog header="Student Info" widgetVar="studentDialog"
+						modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="studentDetail" style="text-align:center;">
+							<p:panelGrid columns="2"
+								rendered="#{not empty studentGroupBean.selectedStudent}"
+								columnClasses="label,value">
+								<f:facet name="header">
+
+								</f:facet>
+
+								<h:outputText value="Group" />
+								<h:outputText value="#{studentGroupBean.selectedStudent.group}" />
+
+								<h:outputText value="Sex" />
+								<h:outputText value="#{studentGroupBean.selectedStudent.sex}" />
+
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+
+				</h:form>
+
+			</p:panel>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

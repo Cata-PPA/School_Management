@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Admin</title>
+</h:head>
+<h:body>
+	<ui:composition template="/commonAdmin/commonLayout.xhtml">
+		<ui:define name="content">
+
+			<p:panel style="min-height:900px; max-width:80%; margin:0 auto;">
+				<h:form id="form">
+					<p:dataGrid var="user" value="#{adminBean.allUsers}" columns="3"
+						layout="grid" rows="12" paginator="true" id="users"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,16">
+
+						<f:facet name="header">
+           Users
+        </f:facet>
+
+						<p:panel header="#{user.username}" style="text-align:center">
+							<h:panelGrid columns="1" style="width:100%">
+
+								<img src="#{user.picture}" height="160" width="160"> </img>
+								<p:panelGrid columns="3" layout="grid">
+									<p:commandLink update=":form:userDetail"
+										oncomplete="PF('userDialog').show()" username="View Detail">
+										<h:outputText styleClass="ui-icon ui-icon-search"
+											style="margin:0 auto;" />
+										<f:setPropertyActionListener value="#{user}"
+											target="#{adminBean.selectedUser}" />
+									</p:commandLink>
+
+									<p:commandLink update=":form:userEdit"
+										oncomplete="PF('userEditDialog').show()" username="Edit user">
+										<h:outputText styleClass="ui-icon ui-icon-pencil"
+											style="margin:0 auto;" />
+										<f:setPropertyActionListener value="#{user}"
+											target="#{adminBean.selectedUser}" />
+									</p:commandLink>
+
+									<h:commandButton id="delete" styleClass="ui-icon ui-icon-trash"
+										action="#{adminBean.deleteUser(user)}">
+									</h:commandButton>
+								</p:panelGrid>
+
+
+
+							</h:panelGrid>
+						</p:panel>
+					</p:dataGrid>
+
+
+					<p:commandLink update=":form:userAdd"
+						oncomplete="PF('userDialogAdd').show()" username="Add new user"
+						value="Add new user" icon="ui-icon-plus">
+					</p:commandLink>
+					<p:dialog header="Add new user" widgetVar="userDialogAdd"
+						modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="userAdd" style="text-align:center;">
+							<p:panelGrid columns="2" columnClasses="label,value">
+								<f:facet name="header">
+
+								</f:facet>
+
+								<h:outputLabel for="newUsername" value="Username" />
+								<h:inputText id="newUsername" value="#{adminBean.user.username}" />
+
+								<h:outputLabel for="newPassword" value="Password" />
+								<h:inputText id="newPassword" value="#{adminBean.user.password}" />
+
+								<h:outputLabel for="newType" value="Type" />
+								<h:inputText id="newType" value="#{adminBean.user.type}" />
+
+
+								<h:commandButton id="insertUser" value="insert"
+									action="#{adminBean.insertUser(adminBean.user)}">
+								</h:commandButton>
+
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+
+
+
+					<p:dialog header="User Info" widgetVar="userDialog" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="userDetail" style="text-align:center;">
+							<p:panelGrid columns="2"
+								rendered="#{not empty adminBean.selectedUser}"
+								columnClasses="label,value">
+								<f:facet name="header">
+
+								</f:facet>
+
+								<h:outputText value="Password" />
+								<h:outputText value="#{adminBean.selectedUser.password}" />
+
+								<h:outputText value="Type" />
+								<h:outputText value="#{adminBean.selectedUser.type}" />
+
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+
+					<p:dialog header="User Update" widgetVar="userEditDialog"
+						modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+						<p:outputPanel id="userEdit" style="text-align:center;">
+							<p:panelGrid columns="2"
+								rendered="#{not empty adminBean.selectedUser}"
+								columnClasses="label,value">
+								<f:facet name="header">
+
+								</f:facet>
+
+								<h:outputLabel for="username" value="Username" />
+								<h:inputText id="username"
+									value="#{adminBean.selectedUser.username}" />
+
+
+								<h:outputLabel for="password" value="Password" />
+								<h:inputText id="password"
+									value="#{adminBean.selectedUser.password}" />
+
+								<h:outputLabel for="type" value="Type" />
+								<h:inputText id="type" value="#{adminBean.selectedUser.type}" />
+
+
+								<h:commandButton id="update" value="update"
+									action="#{adminBean.updateUser(adminBean.selectedUser)}">
+								</h:commandButton>
+
+							</p:panelGrid>
+						</p:outputPanel>
+					</p:dialog>
+				</h:form>
+
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Student</title>
+
+
+	<h:form>
+		<p:growl id="messages" showDetail="false" />
+
+		<p:menu toggleable="true">
+			<p:submenu label="Home">
+				<p:menuitem value="Home" actionListener="#{menuView.save}"
+					update="messages" icon="ui-icon-disk" />
+				<p:menuitem value="Update" actionListener="#{menuView.update}"
+					update="messages" icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+			<p:submenu label="Profile">
+				<p:menuitem value="View profile" actionListener="#{menuView.delete}"
+					update="messages" ajax="false" icon="ui-icon-search" />
+				<p:menuitem value="Edit profile" outcome="studentEditProfile" icon="ui-icon-star" />
+			</p:submenu>
+			<p:submenu label="Courses">
+				<p:menuitem value="External" url="http://www.primefaces.org"
+					icon="ui-icon-home" />
+				<p:menuitem value="Internal" outcome="login" icon="ui-icon-star" />
+			</p:submenu>
+
+			<p:submenu label="Exams">
+				<p:menuitem value="External" url="http://www.primefaces.org"
+					icon="ui-icon-home" />
+				<p:menuitem value="Internal" outcome="login" icon="ui-icon-star" />
+			</p:submenu>
+
+			<p:submenu label="Grades">
+				<p:menuitem value="External" url="http://www.primefaces.org"
+					icon="ui-icon-home" />
+				<p:menuitem value="Internal" outcome="login" icon="ui-icon-star" />
+			</p:submenu>
+
+			<p:submenu label="Group">
+				<p:menuitem value="Internal" outcome="studentGroup" icon="ui-icon-star" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+</h:head>
+<h:body>
+	<!-- 	<ui:composition template="/common/commonLayout.xhtml"> -->
+	<!-- 		<ui:define name="content"> -->
+
+	<!-- 			<p:panel style="min-height:900px; max-width:80%; margin:0 auto;"> -->
+	<!-- 				<h:form id="form"> -->
+	<!-- 					<p:dataGrid var="dvd" value="#{customerBean.allDvds}" columns="3" -->
+	<!-- 						layout="grid" rows="12" paginator="true" id="dvds" -->
+	<!-- 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" -->
+	<!-- 						rowsPerPageTemplate="6,12,16"> -->
+
+	<!-- 						<f:facet name="header"> -->
+	<!--            Dvds -->
+	<!--         </f:facet> -->
+
+	<!-- 						<p:panel header="#{dvd.title}" style="text-align:center"> -->
+	<!-- 							<h:panelGrid columns="1" style="width:100%"> -->
+
+	<!-- 								<img src="#{dvd.picture}" height="160" width="160"> </img> -->
+	<!-- 								<p:panelGrid columns="3" layout="grid"> -->
+	<!-- 									<p:commandLink update=":form:dvdDetail" -->
+	<!-- 										oncomplete="PF('dvdDialog').show()" title="View Detail"> -->
+	<!-- 										<h:outputText styleClass="ui-icon ui-icon-search" -->
+	<!-- 											style="margin:0 auto;" /> -->
+	<!-- 										<f:setPropertyActionListener value="#{dvd}" -->
+	<!-- 											target="#{customerBean.selectedDvd}" /> -->
+	<!-- 									</p:commandLink> -->
+
+	<!-- 								</p:panelGrid> -->
+
+	<!-- 							</h:panelGrid> -->
+	<!-- 						</p:panel> -->
+	<!-- 					</p:dataGrid> -->
+
+
+	<!-- 					<p:dialog header="Dvd Info" widgetVar="dvdDialog" modal="true" -->
+	<!-- 						showEffect="fade" hideEffect="fade" resizable="false"> -->
+	<!-- 						<p:outputPanel id="dvdDetail" style="text-align:center;"> -->
+	<!-- 							<p:panelGrid columns="2" -->
+	<!-- 								rendered="#{not empty customerBean.selectedDvd}" -->
+	<!-- 								columnClasses="label,value"> -->
+	<!-- 								<f:facet name="header"> -->
+
+	<!-- 								</f:facet> -->
+
+	<!-- 								<h:outputText value="Year" /> -->
+	<!-- 								<h:outputText value="#{customerBean.selectedDvd.year}" /> -->
+
+	<!-- 								<h:outputText value="Price" /> -->
+	<!-- 								<h:outputText value="lei#{customerBean.selectedDvd.price}" /> -->
+
+	<!-- 							</p:panelGrid> -->
+	<!-- 						</p:outputPanel> -->
+	<!-- 					</p:dialog> -->
+
+	<!-- 				</h:form> -->
+
+	<!-- 			</p:panel> -->
+	<!-- 		</ui:define> -->
+	<!-- 	</ui:composition> -->
+
+</h:body>
+</html>

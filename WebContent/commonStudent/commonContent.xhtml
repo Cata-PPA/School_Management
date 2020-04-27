@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition>
+
+		<f:view>
+			<h:form>
+				<p:growl id="messages" showDetail="false" />
+
+				<p:menu toggleable="true">
+					<p:submenu label="Home">
+						<p:menuitem value="Home" actionListener="#{menuView.save}"
+							update="messages" icon="ui-icon-disk" />
+						<p:menuitem value="Update" actionListener="#{menuView.update}"
+							update="messages" icon="ui-icon-arrowrefresh-1-w" />
+					</p:submenu>
+					<p:submenu label="Profile">
+						<p:menuitem value="View profile"
+							actionListener="#{menuView.delete}" update="messages"
+							ajax="false" icon="ui-icon-search" />
+						<p:menuitem value="Edit profile"
+							actionListener="#{menuView.delete}" update="messages"
+							ajax="false" icon="ui-icon-close" />
+					</p:submenu>
+
+					<p:submenu label="Teacher">
+						<p:menuitem value="View Teachers" outcome="studentViewTeachers"
+							icon="ui-icon-star" />
+					</p:submenu>
+					<p:submenu label="Courses">
+						<p:menuitem value="External" url="http://www.primefaces.org"
+							icon="ui-icon-home" />
+						<p:menuitem value="Internal" outcome="login" icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Exams">
+						<p:menuitem value="External" url="http://www.primefaces.org"
+							icon="ui-icon-home" />
+						<p:menuitem value="Internal" outcome="login" icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Grades">
+						<p:menuitem value="External" url="http://www.primefaces.org"
+							icon="ui-icon-home" />
+						<p:menuitem value="Internal" outcome="login" icon="ui-icon-star" />
+					</p:submenu>
+
+					<p:submenu label="Group">
+						<p:menuitem value="Internal" outcome="studentGroup"
+							icon="ui-icon-star" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</f:view>
+
+	</ui:composition>
+</body>
+</html>

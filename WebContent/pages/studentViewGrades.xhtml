@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Student</title>
+
+</h:head>
+<h:body>
+	<ui:composition template="/commonStudent/commonLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<p:dataTable id="tbl" var="grade"
+					value="#{studentViewGrades.getStudentGrades(loginBean.loginUser)}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					paginator="true" rows="10" style="margin-bottom:20px">
+
+					<f:facet name="{Exporters}">
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/excel.png" width="24" />
+							<p:dataExporter type="xls" target="tbl" fileName="grades" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage
+								name="http://epitech.it/_pelvilen/img/icon_pdf.png" width="24" />
+							<p:dataExporter type="pdf" target="tbl" fileName="grades" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/csv.png" width="24" />
+							<p:dataExporter type="csv" target="tbl" fileName="grades" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage name="/demo/images/xml.png" width="24" />
+							<p:dataExporter type="xml" target="tbl" fileName="grades" />
+						</h:commandLink>
+					</f:facet>
+					<p:column headerText="Subject">
+						<h:outputText value="#{grade.subject}" />
+					</p:column>
+
+					<p:column headerText="Teacher">
+						<h:outputText value="#{grade.teacher.lastname}" />
+					</p:column>
+
+					<p:column headerText="Mark">
+						<h:outputText value="#{grade.mark}" />
+					</p:column>
+
+					<p:column headerText="Comment">
+						<h:outputText value="#{grade.comment}" />
+					</p:column>
+				</p:dataTable>
+
+				<h:commandLink id="excel">
+					<p:graphicImage name="/demo/images/excel.png" />
+					<p:dataExporter type="xls" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink id="pdf">
+					<p:graphicImage name="/demo/images/pdf.png" />
+					<p:dataExporter type="pdf" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink id="csv">
+					<p:graphicImage name="/demo/images/csv.png" />
+					<p:dataExporter type="csv" target="tbl" fileName="cars" />
+				</h:commandLink>
+
+				<h:commandLink id="xml">
+					<p:graphicImage name="/demo/images/xml.png" />
+					<p:dataExporter type="xml" target="tbl" fileName="cars" />
+				</h:commandLink>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
